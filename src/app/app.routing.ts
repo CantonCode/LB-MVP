@@ -8,6 +8,7 @@ import { ProfileComponent } from './Pages/profile/profile.component';
 import { SignupComponent } from './Pages/signup/signup.component';
 import { ViewJobsComponent } from './Pages/viewJobs/viewJobs.component';
 import { ViewJobDetailsComponent } from './Pages/view-job-details/view-job-details.component';
+import { CreateJobsComponent } from './Pages/create-jobs/create-jobs.component';
 
 
 const routes: Routes =[
@@ -23,11 +24,8 @@ const routes: Routes =[
           pathMatch: 'full'
        }
       ] },
-      {
-        path: 'view-details',
-        component: ViewJobDetailsComponent,
-        
-      },
+      { path: 'view-details',     component: ViewJobDetailsComponent},
+      { path:'create-job', component:CreateJobsComponent}
     
 
 ];

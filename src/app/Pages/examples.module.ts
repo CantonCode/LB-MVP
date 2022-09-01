@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { ViewJobDetailsComponent } from './view-job-details/view-job-details.component';
 import { RouterModule } from '@angular/router';
+import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
         ViewJobsComponent,
         SignupComponent,
         ProfileComponent,
-        ViewJobDetailsComponent
+        ViewJobDetailsComponent,
+        CreateJobsComponent
     ]
 })
 export class PagesModule { }
