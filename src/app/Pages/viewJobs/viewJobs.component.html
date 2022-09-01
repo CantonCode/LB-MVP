@@ -1,0 +1,71 @@
+<div>
+    <div class="content" style="align-items: center;justify-content: center;display: flex;">
+        <!-- <div class="row">
+            <div class="filter-bar" style="">
+                <h5>Results:</h5>{{jobResults}}
+            </div>
+        </div>
+        
+        <br>
+        <div class="job-card-view" style="margin-top: 20px;">
+            <li *ngFor="let job of jobs">
+                <div class="card" style="width: 18rem; ">
+                    <img class="card-img-top" src={{job.photo}} alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-weight: bold; margin-bottom: 0.1rem;">{{job.name}}</h5>
+                      <h6 class="card-text" style="font-weight:100;color: 4B4B4B;margin-bottom: 0.1rem;">{{job.cat}}</h6>
+                      <p class="card-text" style="font-weight:lighter;color:darkgrey;margin-bottom: 0.5rem;">{{job.location}}</p>
+                    <div style="text-align: center;">
+                        <a href="#" class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;">Go somewhere</a>
+                    </div>
+                      
+                    </div>
+                </div>
+            </li>
+           
+        </div> -->
+        <div class="container">
+            <div class="row" style="padding:20px">
+                
+                <div class="col-6 my-auto">
+                    <div class="filter-bar" style="">
+                        <h5>Results: {{jobResults}}</h5>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="text-align: right;">
+                        <a href="#" class="btn" style="margin: 0 auto; background-color:white; color:black; width: 60%;padding:1px;border-radius: 25px;">filter</a>
+                    </div>
+                </div>
+                <hr width="90%" />
+            </div>
+            
+            <div class="row">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <div class="job-card-view" style="margin-top: 20px;">
+                        <li *ngFor="let job of jobs">
+                            <div class="card" style="width: 18rem; ">
+                                <img class="card-img-top" src={{job.photo}} alt="Card image cap">
+                                <div class="card-body">
+                                  <h5 class="card-title" style="font-weight: bold; margin-bottom: 0.1rem;">{{job.name}}</h5>
+                                  <h6 class="card-text" style="font-weight:100;color: 4B4B4B;margin-bottom: 0.1rem;">{{job.cat}}</h6>
+                                  <p class="card-text" style="font-weight:lighter;color:darkgrey;margin-bottom: 0.5rem;">{{job.location}}</p>
+                                    <div style="text-align: center;">
+                                        <a [routerLink]="['/view-details']" [state]="{ data: job}"class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;">Go somewhere</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                  </div>
+            </div>
+            
+              
+              
+              
+        </div>
+    </div>
+       
+</div>
+
