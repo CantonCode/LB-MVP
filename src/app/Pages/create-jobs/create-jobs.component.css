@@ -1,0 +1,8 @@
+.cat-button:focus {
+    background-color: lightgrey!important;
+  }
+
+  .nav-button-create:active{
+    border-color: cornflowerblue!important;;
+    color: cornflowerblue!important;;
+  }

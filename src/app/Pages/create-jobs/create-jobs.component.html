@@ -1,1 +1,278 @@
-<p>create-jobs works!</p>
+<div>
+    <div class="content">
+        <div class="nav-header">
+            <div class="row" style="padding:20px">
+                
+                <div class="col-6 my-auto">
+                    <div class="filter-bar" >
+                        <button class="btn" style="color:black; background-color:white;border-radius: 50px;" routerLink="/">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    
+                </div>
+                
+                
+        </div>
+        
+        <div class="welcome-page" *ngIf="currentSlide == 'welcome'">
+
+            <hr width="90%" />
+    
+            <div class="row" style="margin-top:10vh; margin-bottom: 10vh;">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <h2>Welcome to Create</h2>
+                </div>
+            </div>
+    
+            <div class="row" style="background-color: black; height: 65vh">
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                    <h4 style="color:white;padding:15px 15px 15px 15px">Create a job document in just a couple of really simple steps.</h4>
+                </div>
+    
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                    <div >
+                        <a class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 70vw;" (click)="begin()">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="job-cat" *ngIf="currentSlide == 'category'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">What industry is your job in?</h4>
+                </div>
+            </div>
+    
+            <div class="row" style="justify-content: center;display: flex;text-align: center;display: flex; align-items: center;">
+                
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" aria-label="Default select example" style="width: 80%;" [(ngModel)]="jobCat1" (change)="jobCat1Change($event.target.value)" placeholder="Select Industry">
+                      <option value="" disabled selected>Select the Industry</option>
+                      <option value="Construction">Construction</option>
+                      <option value="Land">Land</option>
+                      <option value="Cleaning">Cleaning</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" aria-label="Default select example" style="width: 80% ;" [(ngModel)]="jobCat2" [disabled]="!jobCat1" placeholder="Select Category">
+                      <option value="" disabled selected>Select the Category</option>
+                      <option *ngFor="let job of jobCat2List" [value]="job">
+                        {{ job }}
+                     </option>
+                    </select>
+                  </div>
+            </div>
+        </div>
+
+        <!-- <button type="button" class="btn btn-secondary cat-button" style="justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                        <label style="margin:5px" >
+                           Farming
+                            
+                        </label>
+                        <input type="radio" name="something" value="Fin Rot" style="margin:5px">
+                    </button> -->
+
+        <div class="job-name" *ngIf="currentSlide == 'name'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Give your job a title</h4>
+                </div>
+            </div>
+    
+            <div class="row" style="justify-content: center;display: flex;text-align: center;">
+                <div class="form-group" style="width: 75%;">
+                    <input  type="text" class="form-control" id="exampleFormControlInput1" maxlength="35" [(ngModel)]="jobName" style=" border-width: 1.5px; border-color:black">
+                  </div>
+            </div>
+        </div>
+
+        <div class="job-description" *ngIf="currentSlide == 'description'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
+                <div class="col-10" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Describe the work that needs to be done below:</h4>
+                </div>
+            </div>
+    
+            <div class="row" style="justify-content: center;display: flex;text-align: center;">
+                <div class="form-group" style="width: 75%;">
+                    
+                    <textarea [(ngModel)]="jobDescription" class="form-control" id="exampleFormControlTextarea1" maxlength="300" rows="10" style="max-height:100vh ; border-width: 1.5px; border-color:black"></textarea>
+                  </div>
+            </div>
+        </div>
+
+        <div class="job-listing-time" *ngIf="currentSlide == 'time'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
+                <div class="col-10" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">How Many days would you like to list your job for:</h4>
+                </div>
+            </div>
+    
+            <div class="row" style="justify-content: center;display: flex;text-align: center;">
+                <div class="form-group" style="width: 85%;">
+                    <button type="button" (click)='jobTime = jobTime - 1'class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 28px;font-size:large;width: 13vw;"> - </button>
+                    <input  [(ngModel)]="jobTime" type="number" id="quantity" name="quantity" min="1" max="30" value="1" style="height:8vh; width:40vw;text-align: center;font-size:x-large; border-width: 1.5px; border-color:black;border-radius: 20px;font: bold;margin-left:5px; margin-right:5px;">
+                    <button type="button" (click)='jobTime = jobTime + 1' class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 28px;font-size:large; width: 13vw;">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="job-location" *ngIf="currentSlide == 'location'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;">
+                <div class="col-10" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Where is the job located?:</h4>
+                </div>
+            </div>
+    
+            <div class="row" style="">
+
+                <div class="col-12" style="padding-left: 14vw;">
+                    <h3 style="margin-top: 0px;">Town/City</h3>
+                </div>
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" style="width:80%" [(ngModel)]="jobLocationTown">
+                        <option disabled selected>Select a town</option>
+                        <option>Castletroy</option>
+                        <option>Tralee</option>
+                        <option>Strandhill</option>
+                    </select>
+                </div>
+
+                <div class="col-12" style="padding-left: 14vw;">
+                    <h3 style="margin-top: 0px;">County/Provience</h3>
+                </div>
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" style="width:80%" [(ngModel)]="jobLocationCounty">
+                        <option disabled selected>Select a county</option>
+                        <option>Limerick</option>
+                        <option>Kerry</option>
+                        <option>Sligo</option>
+                        
+                    </select>
+                </div>
+
+                <div class="col-12" style="padding-left: 14vw;">
+                    <h3 style="margin-top: 0px;">Country</h3>
+                </div>
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" style="width:80%" [(ngModel)]="jobLocationCountry">
+                        <option disabled selected>Select a Country</option>
+                        <option>Ireland</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="job-contact" *ngIf="currentSlide == 'contact'" >
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
+                <div class="col-10" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Please enter contact details below:</h4>
+                </div>
+            </div>
+
+            <div class="row" style="">
+
+                <div class="col-12" style="padding-left: 16vw;">
+                    <h3 style="margin-top: 0px;">Phone Number</h3>
+                </div>
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                   
+                    <div class="input-group " style="width:80%">
+                        <div class="input-group-prepend" style="background-color:darkgray">
+                          <span class="input-group-text" id="basic-addon3">+3538</span>
+                        </div>
+                        <input [(ngModel)]="jobNumber"type="text" class="form-control" id="phone-number" aria-describedby="basic-addon3" maxlength="8">
+                      </div>
+                </div>
+
+                
+            </div>
+
+        </div>
+
+
+        <div class="job-confirm-details" *ngIf="currentSlide == 'confirm'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
+                <div class="col-10" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Please Confirm Details below</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 " style="padding-top: 15px;text-align:center;">
+                    <p>Job Name: {{jobName}}</p>
+                    <p>Job Description: {{jobDescription}}</p>
+                    <p>Job Category: {{jobCat1}} - {{jobCat2}}</p>
+                    <p>Job Address: {{jobLocationFull}}</p>
+                    <p>Job Listed Days: {{jobTime}}</p>
+                    <p>Job Contact Number: +3538{{jobNumber}}</p>
+                  </div>
+            </div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="job-confirm-details" *ngIf="currentSlide == 'published'">
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
+                <div class="col-10" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Completed!!</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 " style="text-align:center;">
+                    <img src="https://images.freeimages.com/images/large-previews/99f/green-tick-in-circle-1147519.jpg" alt="Flowers in Chania" width="200vw">
+                </div>
+
+                <div class="col-12 " style="text-align:center;">
+                    
+                    <h3>Job Successfully Published</h3>
+                </div>
+                    
+            </div>
+
+                
+            
+
+        </div>
+
+        
+
+
+
+        <div class="bottom-buttons" style="position: fixed; bottom:20%;left:25%" *ngIf="currentSlide !== 'welcome'">
+            <div class="row" style="justify-content: center;display: flex;text-align: center;" *ngIf="currentSlide !== 'published'">
+                <div class="col-6" style="justify-content: right;display: flex;text-align: right;">
+                    <button type="button" (click)="back()" class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 5px;">Back</button>
+                </div>
+
+                <div class="col-6" style="justify-content: left;display: flex;text-align: right;" *ngIf="currentSlide !== 'confirm'">
+                    <button type="button" (click)="next()" class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 5px;">Next</button>
+                </div>
+
+                <div class="col-6" style="justify-content: left;display: flex;text-align: right;" *ngIf="currentSlide == 'confirm'">
+                    <button type="button" (click)="submitJob()" class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 5px;">Publish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="justify-content: center;display: flex;text-align: center;" *ngIf="currentSlide == 'published'">
+            <div class="col-12" style="justify-content: center;display: flex;text-align: center;position: fixed; bottom:20%;">
+                <button type="button"  [routerLink]="['/view-jobs']" class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 5px;">View Jobs</button>
+            </div>
+        </div>
+        
+        
+
+        
+        
+    </div>
+</div>

@@ -9,6 +9,7 @@ import { SignupComponent } from './Pages/signup/signup.component';
 import { ViewJobsComponent } from './Pages/viewJobs/viewJobs.component';
 import { ViewJobDetailsComponent } from './Pages/view-job-details/view-job-details.component';
 import { CreateJobsComponent } from './Pages/create-jobs/create-jobs.component';
+import { HomeComponent } from './Pages/home/home.component';
 
 
 const routes: Routes =[
@@ -25,7 +26,8 @@ const routes: Routes =[
        }
       ] },
       { path: 'view-details',     component: ViewJobDetailsComponent},
-      { path:'create-job', component:CreateJobsComponent}
+      { path:'create-job', component:CreateJobsComponent},
+      { path: 'home',     component: HomeComponent },
     
 
 ];

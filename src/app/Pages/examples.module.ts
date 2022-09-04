@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ViewJobDetailsComponent } from './view-job-details/view-job-details.component';
 import { RouterModule } from '@angular/router';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { CreateJobsComponent } from './create-jobs/create-jobs.component';
         SignupComponent,
         ProfileComponent,
         ViewJobDetailsComponent,
-        CreateJobsComponent
+        CreateJobsComponent,
+        HomeComponent
     ]
 })
 export class PagesModule { }
