@@ -13,7 +13,7 @@ import { HomeComponent } from './Pages/home/home.component';
 
 
 const routes: Routes =[
-    { path: '', redirectTo: 'view-jobs', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'signup',           component: SignupComponent },
     { path: 'view-jobs',
@@ -28,6 +28,7 @@ const routes: Routes =[
       { path: 'view-details',     component: ViewJobDetailsComponent},
       { path:'create-job', component:CreateJobsComponent},
       { path: 'home',     component: HomeComponent },
+      { path: '**',     component: HomeComponent },
     
 
 ];

@@ -9,7 +9,7 @@ import { Job } from 'app/models/job.model';
 })
 export class CreateJobsComponent implements OnInit {
   slides = ['welcome','name','description','category','time','location','contact','confirm'];
-  currentSlide = 'published';
+  currentSlide = 'welcome';
   currCard = this.slides[0];
   finalJob:Job;
   jobCat1:string;
@@ -24,6 +24,8 @@ export class CreateJobsComponent implements OnInit {
   jobLocationCounty:string;
   jobLocationCountry:string;
   jobLocationFull:string;
+  completed:boolean;
+  loading:boolean;
   
   
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
@@ -36,6 +38,8 @@ export class CreateJobsComponent implements OnInit {
     this.getScreenWidth = window.innerWidth;
       this.getScreenHeight = window.innerHeight;
       this.jobTime = 1;
+      
+      this.loading = false;
 
   }
 
@@ -193,6 +197,8 @@ export class CreateJobsComponent implements OnInit {
 
 submitJob(){
 
+  this.loading=true;
+
   this.finalJob = new Job(this.jobName,this.jobDescription,[this.jobCat1,this.jobCat2],'https://media.istockphoto.com/photos/beautiful-residential-home-exterior-on-bright-sunny-day-with-green-picture-id1211174464?k=20&m=1211174464&s=612x612&w=0&h=fQ3ahmaJnYcZb0UQtBXvOhcuhHFTgK9BA5Mylic7Gnw=',
   this.jobTime,300,this.jobLocationFull,Number(this.jobNumber));
 
@@ -205,6 +211,7 @@ submitJob(){
 
            if(response.status == 200){
             this.currentSlide = 'published'
+            this.loading = false;
            }
         },
         

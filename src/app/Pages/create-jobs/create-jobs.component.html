@@ -204,21 +204,33 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12 " style="padding-top: 15px;text-align:center;">
-                    <p>Job Name: {{jobName}}</p>
-                    <p>Job Description: {{jobDescription}}</p>
-                    <p>Job Category: {{jobCat1}} - {{jobCat2}}</p>
-                    <p>Job Address: {{jobLocationFull}}</p>
-                    <p>Job Listed Days: {{jobTime}}</p>
-                    <p>Job Contact Number: +3538{{jobNumber}}</p>
+            <div *ngIf="!loading">
+                
+    
+                <div class="row">
+                    <div class="col-12 " style="padding-top: 15px;text-align:center;">
+                        <p>Job Name: {{jobName}}</p>
+                        <p>Job Description: {{jobDescription}}</p>
+                        <p>Job Category: {{jobCat1}} - {{jobCat2}}</p>
+                        <p>Job Address: {{jobLocationFull}}</p>
+                        <p>Job Listed Days: {{jobTime}}</p>
+                        <p>Job Contact Number: +3538{{jobNumber}}</p>
+                    </div>
+                </div>
+            </div>
+           
+
+            <div class="job-loading d-flex justify-content-center" *ngIf="loading" >
+                <div class="spinner-border"  role="status" >
+                    <span class="sr-only">Loading...</span>
                   </div>
             </div>
 
                 
-            </div>
-
         </div>
+
+        
+
 
         <div class="job-confirm-details" *ngIf="currentSlide == 'published'">
             <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
@@ -238,6 +250,10 @@
                 </div>
                     
             </div>
+        
+            
+
+            
 
                 
             
