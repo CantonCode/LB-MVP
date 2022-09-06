@@ -1,0 +1,51 @@
+<div>
+    <div class="content">
+        <div class="nav-header">
+            <div class="row" style="padding:20px">
+                
+                <div class="col-6 my-auto">
+                    <div class="filter-bar" >
+                        <button class="btn" style="color:black; background-color:white;border-radius: 50px;" routerLink="/">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+
+        <div class="register-details" >
+            <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <h4 style="color:white; margin-top: 0px;">Please Fill Out Details Below:</h4>
+                </div>
+            </div>
+    
+            <div class="row" style="justify-content: center;display: flex;text-align: center;display: flex; align-items: center;">
+                
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" aria-label="Default select example" style="width: 80%;" [(ngModel)]="jobCat1" (change)="jobCat1Change($event.target.value)" placeholder="Select Industry">
+                      <option value="" disabled selected>Select the Industry</option>
+                      <option value="Construction">Construction</option>
+                      <option value="Land">Land</option>
+                      <option value="Cleaning">Cleaning</option>
+                    </select>
+                  </div>
+  
+                  <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                    <select class="form-control" aria-label="Default select example" style="width: 80% ;" [(ngModel)]="jobCat2" [disabled]="!jobCat1" placeholder="Select Category">
+                      <option value="" disabled selected>Select the Category</option>
+                      <option *ngFor="let job of jobCat2List" [value]="job">
+                        {{ job }}
+                     </option>
+                    </select>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

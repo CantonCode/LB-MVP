@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ViewJobsComponent } from './viewJobs/viewJobs.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SignupComponent } from './signup/signup.component';
+import { Signup1Component } from './signup/signup.component';
 import { ViewJobDetailsComponent } from './view-job-details/view-job-details.component';
 import { RouterModule } from '@angular/router';
 import { CreateJobsComponent } from './create-jobs/create-jobs.component';
 import { HomeComponent } from './home/home.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     imports: [
@@ -20,11 +22,13 @@ import { HomeComponent } from './home/home.component';
     ],
     declarations: [
         ViewJobsComponent,
-        SignupComponent,
+        Signup1Component,
         ProfileComponent,
         ViewJobDetailsComponent,
         CreateJobsComponent,
-        HomeComponent
+        HomeComponent,
+        SignUpComponent,
+        LoginComponent
     ]
 })
 export class PagesModule { }
