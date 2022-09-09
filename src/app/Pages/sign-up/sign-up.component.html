@@ -58,10 +58,12 @@
                 <div class="form-group">
                     <h3 style="margin-top: 0px;">Email</h3>
                     <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" style="border-color:black ; border-radius: 5px;" />
-                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && f.email.errors " class="invalid-feedback">
                         <div *ngIf="f.email.errors.required">Email is required</div>
                         <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        <div *ngIf="f.email.errors.duplicate">Email Already Registed!!</div>
                     </div>
+                    <!-- <div *ngIf="duplicateEmail" class="" style="margin-top: 0.25rem;font-size: 80%;color: #dc3545;">Email Already Registered!!</div> -->
                 </div>
                 <div class="form-row">
                     <div class="form-group col-12">
