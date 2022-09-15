@@ -12,6 +12,7 @@ import { CreateJobsComponent } from './Pages/create-jobs/create-jobs.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { SignUpComponent } from './Pages/sign-up/sign-up.component';
 import { LoginComponent } from './Pages/login/login.component';
+import { AuthGuard } from './_helpers/auth.gaurd';
 
 
 const routes: Routes =[
@@ -30,8 +31,8 @@ const routes: Routes =[
        }
       ] },
       { path: 'view-details',     component: ViewJobDetailsComponent},
-      { path:'create-job', component:CreateJobsComponent},
-      { path: 'home',     component: HomeComponent },
+      { path:'create-job', component:CreateJobsComponent,canActivate: [AuthGuard]},
+      { path: 'home',     component: HomeComponent,canActivate: [AuthGuard] },
       { path: '**',     component: HomeComponent },
     
 

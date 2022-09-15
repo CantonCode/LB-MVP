@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from 'app/_helpers/must-match.validator';
 import { AccountService } from 'app/_services/account.service';
+import { AlertService } from 'app/_services/alert.service';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -22,7 +23,8 @@ export class SignUpComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private accountService: AccountService,
               private route: ActivatedRoute,
-              private router: Router,) { }
+              private router: Router,
+              private alertService: AlertService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -37,6 +39,12 @@ export class SignUpComponent implements OnInit {
       validator: MustMatch('password', 'confirmPassword')
 
     });
+
+    
+
+    
+
+    
 }
 
 get f() { return this.form.controls; }
@@ -44,6 +52,9 @@ get f() { return this.form.controls; }
 onSubmit() {
     console.log("SUBMITTING",this.form);
     this.submitted = true;
+
+    this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+    
 
     // reset alerts on submit
     // this.alertService.clear();
@@ -59,16 +70,16 @@ onSubmit() {
         .pipe(first())
         .subscribe({
             next: () => {
-                // this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+                this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
                 console.log("USER REGISTERED")
                 this.router.navigate(['../login'], { relativeTo: this.route });
             },
             error: error => {
-                if(error.error.message == "User Already Registered"){
+                if(error == "User Already Registered"){
                   this.duplicateEmail = true;
                   this.form.controls.email.setErrors({'duplicate': true});
                 }
-                console.log("ERROR",error.error.message)
+                console.log("ERROR",error)
                 this.loading = false;
             }
         });
