@@ -7,6 +7,7 @@ export class Job {
     cost:number;
     location:string;
     phoneNumber:number;
+    creator:string;
 
   constructor(
     name: string, 
@@ -16,7 +17,8 @@ export class Job {
     listingTime: number, 
     cost: number, 
     location: string, 
-    phoneNumber: number
+    phoneNumber: number,
+    creator:string
 ) {
     this.name = name
     this.description = description
@@ -26,6 +28,7 @@ export class Job {
     this.cost = cost
     this.location = location
     this.phoneNumber = phoneNumber
+    this.creator = creator
   }
 
     

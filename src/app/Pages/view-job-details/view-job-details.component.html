@@ -15,8 +15,11 @@
             </div>
             <hr width="90%" />
         </div>
-
-        <div class="row">
+        <div class="spinner" style="justify-content: center;display: flex;text-align: center;">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
+        </div>
+       
+        <div  *ngIf="!loading" class="row">
             <div class="col-12">
                 <div class="">
                     <img class="card-img-top" src={{currentJob.photo}} alt="Card image cap">
@@ -94,7 +97,7 @@
                         <div class="col-1" style=""></div>
         
                         <div class="col-10" style="margin-left:5px" >
-                            <h4 style="margin-top:0px;color: black;font-weight: 500;">example@gmail.com</h4>
+                            <h4 style="margin-top:0px;color: black;font-weight: 500;">{{currentCreator.email}}</h4>
                         </div>
                     </div>
                 </div>
