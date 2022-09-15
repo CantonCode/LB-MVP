@@ -5,17 +5,22 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { ProfileComponent } from './Pages/profile/profile.component';
-import { SignupComponent } from './Pages/signup/signup.component';
+import { Signup1Component } from './Pages/signup/signup.component';
 import { ViewJobsComponent } from './Pages/viewJobs/viewJobs.component';
 import { ViewJobDetailsComponent } from './Pages/view-job-details/view-job-details.component';
 import { CreateJobsComponent } from './Pages/create-jobs/create-jobs.component';
 import { HomeComponent } from './Pages/home/home.component';
+import { SignUpComponent } from './Pages/sign-up/sign-up.component';
+import { LoginComponent } from './Pages/login/login.component';
+import { AuthGuard } from './_helpers/auth.gaurd';
 
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'user-profile',     component: ProfileComponent },
-    { path: 'signup',           component: SignupComponent },
+    { path: 'signup',           component: Signup1Component },
+    { path: 'sign-up',           component: SignUpComponent },
+    { path: 'login',           component: LoginComponent },
     { path: 'view-jobs',
       component: ViewJobsComponent,
       children:[
@@ -26,8 +31,8 @@ const routes: Routes =[
        }
       ] },
       { path: 'view-details',     component: ViewJobDetailsComponent},
-      { path:'create-job', component:CreateJobsComponent},
-      { path: 'home',     component: HomeComponent },
+      { path:'create-job', component:CreateJobsComponent,canActivate: [AuthGuard]},
+      { path: 'home',     component: HomeComponent,canActivate: [AuthGuard] },
       { path: '**',     component: HomeComponent },
     
 

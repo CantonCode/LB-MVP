@@ -1,0 +1,136 @@
+<div>
+    <div class="content" style="align-items: center;justify-content: center;display: flex; ">
+
+        <div class="welcome-page" >
+
+            
+    
+            <div class="row" style="margin-top:10vh; margin-bottom: 10vh;">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <h2>Welcome to</h2>
+                   
+                </div>
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <h2 style="font-weight:bold">LocalBids</h2>
+                   
+                </div>
+            </div>
+
+            <hr width="90%" />
+
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-group row">
+                        <div class="col-12" style="padding-left: 19vw;">
+                            <h3 style="margin-top: 0px;">Email</h3>
+                        </div>
+                        <div class="col-12" style="justify-content: center;display: flex;text-align: center;" >
+                            <div class="form-group" style="width: 70%;">
+                                <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" style=" border-width: 1.5px; border-color:black"/>
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email is invalid</div>
+                                    <div *ngIf="f.email.errors.incorrect">Incorrect Email or Password</div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-12" style="padding-left: 19vw;">
+                            <h3 style="margin-top: 0px;">Password</h3>
+                        </div>
+                        <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                            <div class="form-group" style="width: 70%;">
+                                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" style=" border-width: 1.5px; border-color:black" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.incorrect">Incorrect Email or Password</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                    
+
+                        <div class="row login-buttons" style="margin: 5vh">
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <button type="button" [disabled]="loading" (click)='onSubmit()' class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" style="margin:7px"></span>
+                                    <label *ngIf="!loading" style="margin:7px" >
+                                       Login
+                                    </label>
+                                </button>
+                            </div>
+            
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <button type="button" routerLink="/sign-up" class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                    <label style="margin:7px" >
+                                       Register
+                                    </label>
+                                </button>
+                            </div>
+            
+                            
+            
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <a style="color:darkgrey">Forgotten Password?</a>
+                            </div>
+        
+                        </div>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- <div class="row" style="">
+                <div class="col-12" style="padding-left: 19vw;">
+                    <h3 style="margin-top: 0px;">Email</h3>
+                </div>
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                    <div class="form-group" style="width: 70%;">
+                        <input  type="email" class="form-control" id="exampleFormControlInput1" maxlength="35" [(ngModel)]="userEmail" style=" border-width: 1.5px; border-color:black">
+                    </div>
+                 
+                </div>
+    
+                <div class="col-12" style="padding-left: 19vw;">
+                    <h3 style="margin-top: 0px;">Password</h3>
+                </div>
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                    <div class="form-group" style="width: 70%;">
+                        <input  type="password" class="form-control" id="exampleFormControlInput1" maxlength="35" [(ngModel)]="userPass" style=" border-width: 1.5px; border-color:black">
+                    </div>
+                
+                </div>
+
+                <div class="row login-buttons" style="margin: 5vh">
+                    <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                        <button type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                            <label style="margin:7px" >
+                               Login
+                            </label>
+                        </button>
+                    </div>
+    
+                    <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                        <button type="button" routerLink="/sign-up" class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                            <label style="margin:7px" >
+                               Register
+                            </label>
+                        </button>
+                    </div>
+    
+                    
+    
+                    <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                        <a style="color:darkgrey">Forgotten Password?</a>
+                    </div>
+
+                </div>
+
+                
+
+                
+            </div> -->
+        </div>
+        
+    </div>  
+</div>

@@ -6,12 +6,20 @@
             
     
             <div class="row" style="margin-top:10vh; margin-bottom: 10vh;">
+
                 <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                   
+                    <h1>Hi {{account.firstName}}!</h1>
+                   
+                </div>
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                   
                     <h2>Welcome to</h2>
                    
                 </div>
                 <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
                     <h2 style="font-weight:bold">LocalBids</h2>
+                    
                    
                 </div>
             </div>
@@ -33,6 +41,11 @@
                            Create a Job
                         </label>
                     </button>
+                </div>
+
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                    
+                    <span (click)="logout()" style="color:darkgrey">Log Out</span>
                 </div>
 
                 
