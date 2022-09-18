@@ -9,6 +9,7 @@ import { Account } from '../models/account.model';
 import { BasicAccount } from 'app/models/basic.account.model';
 
 const baseUrl = `${environment.apiUrl}/accounts`;
+const jobUrl = `${environment.apiUrl}/api/jobs`;
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -83,6 +84,10 @@ export class AccountService {
 
     getJobCreatorById(id:string){
         return this.http.get<BasicAccount>(`${baseUrl}/getJobCreator/${id}`);
+    }
+
+    getUsersPostsById(id:string){
+        return this.http.get<BasicAccount>(`${jobUrl}/getUsersPosts/${id}`);
     }
     
     create(params) {
