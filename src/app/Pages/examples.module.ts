@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ViewJobsComponent } from './viewJobs/viewJobs.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './user-profiles/profile/profile.component'
 import { Signup1Component } from './signup/signup.component';
 import { ViewJobDetailsComponent } from './view-job-details/view-job-details.component';
 import { RouterModule } from '@angular/router';

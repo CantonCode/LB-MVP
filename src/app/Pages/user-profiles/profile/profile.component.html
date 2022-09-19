@@ -1,0 +1,113 @@
+<div>
+    <div class="content" >
+        <div class="row" style="padding:20px">
+                
+            <div class="col-6 my-auto">
+                <div class="filter-bar" *ngIf="!yourJobs">
+                    <button class="btn" style="color:black; background-color:white;border-radius: 50px;" routerLink="/">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    
+                </div>
+
+                <div class="filter-bar" *ngIf="yourJobs">
+                    <button class="btn" style="color:black; background-color:white;border-radius: 50px;"(click)="showJobs()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    
+                </div>
+            </div>
+            <div class="col-6">
+                
+            </div>
+            <hr width="90%" />
+        </div>
+        <div class="spinner" style="justify-content: center;display: flex;text-align: center;">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
+        </div>
+       
+        <div  *ngIf="!loading" class="row">
+            <div class="yourProfile" *ngIf="yourProfile" style="padding: 15px; width: 100%;">
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center; align-items: center;">
+                    <div class="">
+                        <img class="card-img-top" src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" alt="Card image cap" style="  width: 50%;height: 50%;border-radius: 50%;">
+                    </div>
+                </div>
+
+                <div class="col-12" >
+                    <h2 style="margin-top:0px;font-weight: bold;color: black;">{{account.firstName}} {{account.lastName}}</h2>
+                </div>
+
+                <div class="col-12">
+                    <h5 style="margin-top:5px">Joined: {{dateJoined}}</h5>
+                </div>
+
+                <!-- <div class="col-12">
+                    <h4 style="margin-top:5px">Tralee, Co.Kerry, Ireland</h4>
+                </div> -->
+
+                <hr width="90%" />
+
+                <div class="col-12" >
+                    <h3 style="margin-bottom:10px;font-weight: bold;color: black;">Jobs</h3>
+                </div>
+
+                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                    <button type="button" (click)="showJobs()" class="btn btn-secondary cat-button" style="width:95vw;height:12vh;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 15px; vertical-align: middle;">
+                        <div class="row" style="justify-content: center;display: flex;text-align: center; align-items: center;height:10vh;width:90vw;">
+                            <div class="col-8 left">
+                                <label style="margin:10px;padding-top: 5px;vertical-align: middle;font-size: large;text-align: left; float: left;display: flex;" >
+                                    My Jobs
+                                 </label>
+                                 
+
+                                 
+                            </div>
+    
+                            <div class="col-4" style="justify-content: center;display: flex;text-align: center; align-items: center;vertical-align: middle;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-journal-richtext" viewBox="0 0 16 16">
+                                    <path d="M7.5 3.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047L11 4.75V7a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 7v-.5s1.54-1.274 1.639-1.208zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                  </svg>
+                            </div>
+                            
+    
+                        </div>
+                        
+                    </button>
+                </div>
+
+            </div>
+
+            
+                
+
+        </div>
+
+        <div class="yourJobView row" *ngIf="yourJobs" style="align-items: center;justify-content: center;display: flex;">
+            <div class="col-12" style="text-align: center; float: center;display: flex; justify-content: center;">
+                <h3 style="font-weight:bold;">Your Jobs</h3> 
+            </div>
+            <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                <div class="job-card-view" style="margin-top: 20px;">
+                    <li *ngFor="let job of usersJobs" style="list-style: none;">
+                        <div class="card" style="width: 18rem; ">
+                            <img class="card-img-top" src={{job.photo}} alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title" style="font-weight: bold; margin-bottom: 0.1rem;">{{job.name}}</h5>
+                              <h6 class="card-text" style="font-weight:100;color: 4B4B4B;margin-bottom: 0.1rem;">{{job.cat}}</h6>
+                              <p class="card-text" style="font-weight:lighter;color:darkgrey;margin-bottom: 0.5rem;">{{job.location}}</p>
+                                <div style="text-align: center;">
+                                    <a [routerLink]="['/view-details']" [state]="{ data: job, previous: 'user-profile'}" class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;margin: 5px;">View Live Listing</a>
+                                    <a  class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%; margin: 5px;">View Offers</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </li>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

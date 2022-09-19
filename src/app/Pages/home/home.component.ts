@@ -26,19 +26,6 @@ export class HomeComponent implements OnInit {
           console.log(error)
         }
     });
-
-    this.accountService.getUsersPostsById(this.account.id)
-    .pipe(first())
-    .subscribe({
-        next: data => {
-            // get return url from query parameters or default to home page
-            // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-           console.log("Users Posts",data)
-        },
-        error: error => {
-          console.log(error)
-        }
-    });
   }
 
   logout(){

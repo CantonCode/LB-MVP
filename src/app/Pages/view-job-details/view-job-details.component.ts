@@ -14,12 +14,14 @@ export class ViewJobDetailsComponent implements OnInit {
   currentJob:any;
   currentCreator:BasicAccount;
   loading:boolean
+  routing:string;
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.loading = true;
     this.currentJob = history.state.data;
+    this.routing = history.state.previous;
     console.log(this.currentJob);
     this.getCreator(this.currentJob.creator);
   }
