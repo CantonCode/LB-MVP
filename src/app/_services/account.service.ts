@@ -6,8 +6,11 @@ import { map, finalize } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { Account } from '../models/account.model';
+import { BasicAccount } from 'app/models/basic.account.model';
+import { Job } from 'app/models/job.model';
 
 const baseUrl = `${environment.apiUrl}/accounts`;
+const jobUrl = `${environment.apiUrl}/api/jobs`;
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -78,6 +81,14 @@ export class AccountService {
 
     getById(id: string) {
         return this.http.get<Account>(`${baseUrl}/${id}`);
+    }
+
+    getJobCreatorById(id:string){
+        return this.http.get<BasicAccount>(`${baseUrl}/getJobCreator/${id}`);
+    }
+
+    getUsersPostsById(id:string){
+        return this.http.get<Job>(`${jobUrl}/getUsersPosts/${id}`);
     }
     
     create(params) {

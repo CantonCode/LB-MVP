@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Job } from 'app/models/job.model';
+import { AccountService } from 'app/_services/account.service';
 
 @Component({
   selector: 'app-create-jobs',
@@ -8,6 +9,7 @@ import { Job } from 'app/models/job.model';
   styleUrls: ['./create-jobs.component.css']
 })
 export class CreateJobsComponent implements OnInit {
+  account = this.accountService.accountValue;
   slides = ['welcome','name','description','category','time','location','contact','confirm'];
   currentSlide = 'welcome';
   currCard = this.slides[0];
@@ -29,7 +31,7 @@ export class CreateJobsComponent implements OnInit {
   
   
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private accountService: AccountService) { }
 
   public getScreenWidth: any;
   public getScreenHeight: any;
@@ -40,6 +42,8 @@ export class CreateJobsComponent implements OnInit {
       this.jobTime = 1;
       
       this.loading = false;
+
+      console.log(this.account);
 
   }
 
@@ -197,10 +201,12 @@ export class CreateJobsComponent implements OnInit {
 
 submitJob(){
 
+  var jobCreator = this.account.id
+
   this.loading=true;
 
   this.finalJob = new Job(this.jobName,this.jobDescription,[this.jobCat1,this.jobCat2],'https://media.istockphoto.com/photos/beautiful-residential-home-exterior-on-bright-sunny-day-with-green-picture-id1211174464?k=20&m=1211174464&s=612x612&w=0&h=fQ3ahmaJnYcZb0UQtBXvOhcuhHFTgK9BA5Mylic7Gnw=',
-  this.jobTime,300,this.jobLocationFull,Number(this.jobNumber));
+  this.jobTime,300,this.jobLocationFull,Number(this.jobNumber),jobCreator);
 
   console.log(this.finalJob);
   

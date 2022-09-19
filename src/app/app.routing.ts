@@ -4,7 +4,7 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import { ProfileComponent } from './Pages/profile/profile.component';
+import { ProfileComponent } from './Pages/user-profiles/profile/profile.component';
 import { Signup1Component } from './Pages/signup/signup.component';
 import { ViewJobsComponent } from './Pages/viewJobs/viewJobs.component';
 import { ViewJobDetailsComponent } from './Pages/view-job-details/view-job-details.component';
