@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'app/_services/account.service';
+import { JobsService } from 'app/_services/jobs.service';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -9,8 +10,11 @@ import { first } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
   account = this.accountService.accountValue;
+ 
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,private jobsService:JobsService) { }
+
+  
 
   ngOnInit(): void {
     console.log(this.account.id);
@@ -21,6 +25,19 @@ export class HomeComponent implements OnInit {
             // get return url from query parameters or default to home page
             // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
            console.log(data)
+        },
+        error: error => {
+          console.log(error)
+        }
+    });
+
+    this.jobsService.getJobByIDWithBids('63234775386ce304859054f0')
+    .pipe(first())
+    .subscribe({
+        next: data => {
+            // get return url from query parameters or default to home page
+            // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+           console.log('JOBS:',data)
         },
         error: error => {
           console.log(error)
