@@ -2,37 +2,30 @@
     <div class="content">
         <div class="nav-header">
             <div class="row" style="padding:20px">
-                
                 <div class="col-6 my-auto">
                     <div class="filter-bar" >
                         <button class="btn" style="color:black; background-color:white;border-radius: 50px;" routerLink="/">
                             <i class="fa-solid fa-arrow-left"></i>
                         </button>
-                        
                     </div>
                 </div>
                 <div class="col-6">
-                    
                 </div>
-                
-                
         </div>
-        
-        <div class="welcome-page" *ngIf="currentSlide == 'welcome'">
 
+        <div class="welcome-page" *ngIf="currentSlide == 'welcome'">
             <hr width="90%" />
-    
             <div class="row" style="margin-top:10vh; margin-bottom: 10vh;">
                 <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
                     <h2>Welcome to Create</h2>
                 </div>
             </div>
-    
+
             <div class="row" style="background-color: black; height: 65vh">
                 <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
                     <h4 style="color:white;padding:15px 15px 15px 15px">Create a job document in just a couple of really simple steps.</h4>
                 </div>
-    
+
                 <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
                     <div >
                         <a class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 70vw;" (click)="begin()">Get Started</a>
@@ -47,33 +40,31 @@
                     <h4 style="color:white; margin-top: 0px;">What industry is your job in?</h4>
                 </div>
             </div>
-    
+
             <div class="row" style="justify-content: center;display: flex;text-align: center;display: flex; align-items: center;">
-                
                 <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
                     <select class="form-control" aria-label="Default select example" style="width: 80%;" [(ngModel)]="jobCat1" (change)="jobCat1Change($event.target.value)" placeholder="Select Industry">
-                      <option value="" disabled selected>Select the Industry</option>
-                      <option value="Construction">Construction</option>
-                      <option value="Land">Land</option>
-                      <option value="Cleaning">Cleaning</option>
+                        <option value="" disabled selected>Select the Industry</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Land">Land</option>
+                        <option value="Cleaning">Cleaning</option>
                     </select>
-                  </div>
-  
-                  <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
+                </div>
+
+                <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
                     <select class="form-control" aria-label="Default select example" style="width: 80% ;" [(ngModel)]="jobCat2" [disabled]="!jobCat1" placeholder="Select Category">
-                      <option value="" disabled selected>Select the Category</option>
-                      <option *ngFor="let job of jobCat2List" [value]="job">
-                        {{ job }}
-                     </option>
+                        <option value="" disabled selected>Select the Category</option>
+                            <option *ngFor="let job of jobCat2List" [value]="job">
+                            {{ job }}
+                            </option>
                     </select>
-                  </div>
+                </div>
             </div>
         </div>
 
         <!-- <button type="button" class="btn btn-secondary cat-button" style="justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                         <label style="margin:5px" >
-                           Farming
-                            
+                            Farming
                         </label>
                         <input type="radio" name="something" value="Fin Rot" style="margin:5px">
                     </button> -->
@@ -84,11 +75,11 @@
                     <h4 style="color:white; margin-top: 0px;">Give your job a title</h4>
                 </div>
             </div>
-    
+
             <div class="row" style="justify-content: center;display: flex;text-align: center;">
                 <div class="form-group" style="width: 75%;">
                     <input  type="text" class="form-control" id="exampleFormControlInput1" maxlength="35" [(ngModel)]="jobName" style=" border-width: 1.5px; border-color:black">
-                  </div>
+                </div>
             </div>
         </div>
 
@@ -98,12 +89,11 @@
                     <h4 style="color:white; margin-top: 0px;">Describe the work that needs to be done below:</h4>
                 </div>
             </div>
-    
+
             <div class="row" style="justify-content: center;display: flex;text-align: center;">
                 <div class="form-group" style="width: 75%;">
-                    
                     <textarea [(ngModel)]="jobDescription" class="form-control" id="exampleFormControlTextarea1" maxlength="300" rows="10" style="max-height:100vh ; border-width: 1.5px; border-color:black"></textarea>
-                  </div>
+                </div>
             </div>
         </div>
 
@@ -113,7 +103,7 @@
                     <h4 style="color:white; margin-top: 0px;">How Many days would you like to list your job for:</h4>
                 </div>
             </div>
-    
+
             <div class="row" style="justify-content: center;display: flex;text-align: center;">
                 <div class="form-group" style="width: 85%;">
                     <button type="button" (click)='jobTime = jobTime - 1'class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 28px;font-size:large;width: 13vw;"> - </button>
@@ -129,7 +119,6 @@
                     <h4 style="color:white; margin-top: 0px;">Where is the job located?:</h4>
                 </div>
             </div>
-    
             <div class="row" style="">
 
                 <div class="col-12" style="padding-left: 14vw;">
@@ -153,7 +142,6 @@
                         <option>Limerick</option>
                         <option>Kerry</option>
                         <option>Sligo</option>
-                        
                     </select>
                 </div>
 
@@ -177,25 +165,20 @@
             </div>
 
             <div class="row" style="">
-
                 <div class="col-12" style="padding-left: 16vw;">
                     <h3 style="margin-top: 0px;">Phone Number</h3>
                 </div>
+
                 <div class="form-group col-12" style="align-items: center;justify-content: center;display: flex;text-align: center;">
-                   
                     <div class="input-group " style="width:80%">
                         <div class="input-group-prepend" style="background-color:darkgray">
-                          <span class="input-group-text" id="basic-addon3">+3538</span>
+                            <span class="input-group-text" id="basic-addon3">+3538</span>
                         </div>
                         <input [(ngModel)]="jobNumber"type="text" class="form-control" id="phone-number" aria-describedby="basic-addon3" maxlength="8">
-                      </div>
+                    </div>
                 </div>
-
-                
             </div>
-
         </div>
-
 
         <div class="job-confirm-details" *ngIf="currentSlide == 'confirm'">
             <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
@@ -205,8 +188,6 @@
             </div>
 
             <div *ngIf="!loading">
-                
-    
                 <div class="row">
                     <div class="col-12 " style="padding-top: 15px;text-align:center;">
                         <p>Job Name: {{jobName}}</p>
@@ -218,19 +199,13 @@
                     </div>
                 </div>
             </div>
-           
 
             <div class="job-loading d-flex justify-content-center" *ngIf="loading" >
                 <div class="spinner-border"  role="status" >
                     <span class="sr-only">Loading...</span>
-                  </div>
+                </div>
             </div>
-
-                
         </div>
-
-        
-
 
         <div class="job-confirm-details" *ngIf="currentSlide == 'published'">
             <div class="row" style=" margin-bottom: 5vh; background-color: black; height: 25vh;align-items: center;justify-content: center;display: flex;">
@@ -244,25 +219,12 @@
                     <img src="https://images.freeimages.com/images/large-previews/99f/green-tick-in-circle-1147519.jpg" alt="Flowers in Chania" width="200vw">
                 </div>
 
-                <div class="col-12 " style="text-align:center;">
-                    
+                <div class="col-12 " style="text-align:center;"> 
                     <h3>Job Successfully Published</h3>
                 </div>
-                    
+
             </div>
-        
-            
-
-            
-
-                
-            
-
         </div>
-
-        
-
-
 
         <div class="bottom-buttons" style="position: fixed; bottom:20%;left:25%" *ngIf="currentSlide !== 'welcome'">
             <div class="row" style="justify-content: center;display: flex;text-align: center;" *ngIf="currentSlide !== 'published'">
@@ -285,10 +247,5 @@
                 <button type="button"  [routerLink]="['/view-jobs']" class="btn nav-button-create" style="margin:0px 0px 10px 0px; color: black; background-color: white; border-radius: 5px;">View Jobs</button>
             </div>
         </div>
-        
-        
-
-        
-        
     </div>
 </div>
