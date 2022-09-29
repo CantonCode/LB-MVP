@@ -73,6 +73,11 @@ export class CreateJobsComponent implements OnInit {
     }
   }
 
+  begin(){
+    this.currCard = this.slides[1];
+    this.currentSlide = this.currCard;
+  }
+
   next(){
     var valid = this.validate(this.currCard);
     
@@ -225,11 +230,6 @@ submitJob(){
             console.error('There was an error!', error);
         }
     })
-}
-
-begin(){
-  this.currCard = this.slides[1];
-  this.currentSlide = this.currCard;
 }
 
 onlySpaces(str) {
