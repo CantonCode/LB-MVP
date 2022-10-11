@@ -13,11 +13,20 @@ import { HomeComponent } from './Pages/home/home.component';
 import { SignUpComponent } from './Pages/sign-up/sign-up.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { AuthGuard } from './_helpers/auth.gaurd';
+import { OffersComponent } from './Pages/user-profiles/view-offers/offers/offers.component';
 
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'user-profile',     component: ProfileComponent },
+    { path: 'user-profile',     component: ProfileComponent,
+    children:[
+      {
+        path: 'viewBids',
+        component: OffersComponent
+     }
+    ]
+
+    },
     { path: 'signup',           component: Signup1Component },
     { path: 'sign-up',           component: SignUpComponent },
     { path: 'login',           component: LoginComponent },
@@ -33,6 +42,7 @@ const routes: Routes =[
       { path: 'view-details',     component: ViewJobDetailsComponent},
       { path:'create-job', component:CreateJobsComponent,canActivate: [AuthGuard]},
       { path: 'home',     component: HomeComponent,canActivate: [AuthGuard] },
+      { path: 'viewBids',     component: OffersComponent,canActivate: [AuthGuard] },
       { path: '**',     component: HomeComponent },
     
 

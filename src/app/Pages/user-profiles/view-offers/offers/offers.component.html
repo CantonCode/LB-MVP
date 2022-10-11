@@ -1,0 +1,94 @@
+<div>
+    <div class="content" >
+        <div class="nav-header">
+            <div class="row" style="padding:20px">
+                
+                <div class="col-6 my-auto">
+                    <div class="filter-bar" >
+                        <button class="btn" style="color:black; background-color:white;border-radius: 50px;" routerLink="/user-profile">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    
+                </div>
+                
+                
+        </div>
+
+        
+        <div class="row" *ngIf="!loading" style="padding:20px;padding-bottom: 0px;">
+            
+            <div class="col-6 my-auto">
+                <div class="filter-bar" style="">
+                    <h5>Offers: {{bids.length}}</h5>
+                </div>
+            </div>
+            <div class="col-6">
+                <div style="text-align: right;">
+                    <a  class="btn" style="margin: 0 auto; background-color:white; color:black; width: 60%;padding:1px;border-radius: 25px;">filter</a>
+                </div>
+            </div>
+            <hr width="90%" />
+        </div>
+
+        
+        
+        <div class="spinner" style="justify-content: center;display: flex;text-align: center;">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
+        </div>
+       
+        <div  *ngIf="!loading" class="row" >
+            <div class="col-12" style="justify-content: center;display: flex;text-align: center; align-items: center;">
+                <h4 style="margin:0px; padding-top:10px;font-weight: bolder;">Job:  {{currentJob.name}}</h4>
+            </div>
+
+            <hr width="90%" />
+
+            <div class="col-12" style="padding-right: 0px;justify-content: center;display: flex;align-items: center;">
+                <div class="offer-card-view" style="margin-top: 20px;">
+                    <li *ngFor="let bid of bids">
+                        <div class="card" style="width:22rem; padding: 10px;">
+                            <div class="card-body row">
+                                <div class="User-details" style="margin-bottom: 1rem">
+                                    <h5 class="card-title" style="font-weight: bold; margin-bottom: 0.1rem;">{{bid.userID.firstName}} {{bid.userID.lastName}}</h5>
+                                </div>
+                                
+                               
+                                  
+                                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                    <button type="button" class="btn btn-secondary cat-button" style="width:100%;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;padding: 0px;">
+                                        <label style="margin:10px" >
+                                            View Profile
+                                        </label>
+                                    </button>
+                                </div>
+    
+                                <div class="col-6">
+                                    <button (click)='offerClicked(true,bid)' type="button" class="btn btn-secondary cat-button" style="width:100%;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: white; background-color: green; border-radius: 5px;padding: 0px;border-width: 0px;">
+                                        <label style="margin:10px" >
+                                            Accept
+                                        </label>
+                                    </button>
+                                </div>
+    
+    
+                                <div class="col-6">
+                                    <button type="button" (click)='offerClicked(false,bid)' class="btn btn-secondary cat-button" style="width:100%;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: white; background-color: red; border-radius: 5px;padding: 0px;border-width: 0px;">
+                                        <label style="margin:10px" >
+                                            Reject
+                                        </label>
+                                    </button>
+                                </div>
+                              </div>
+                        </div>
+                    </li>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
