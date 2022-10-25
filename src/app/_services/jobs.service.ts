@@ -32,4 +32,10 @@ export class JobsService {
         console.log(userID);
         return this.http.post(`${jobUrl}/${id}/sendBid`, {userID});
     }
+
+    //changes the selected bid.accepted = true
+    acceptBid(bidID:string){
+        console.log(bidID)
+        return this.http.patch(`${jobUrl}/${bidID}/acceptBid`,{bidID});
+    }
 }

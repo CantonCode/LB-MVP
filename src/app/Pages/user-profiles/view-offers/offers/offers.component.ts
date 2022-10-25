@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Job } from 'app/models/job.model';
 import { JobsService } from 'app/_services/jobs.service';
 import { first } from 'rxjs/operators';
@@ -17,7 +18,11 @@ export class OffersComponent implements OnInit {
   jobHasAcceptedBid:boolean
 
 
-  constructor(private jobsService:JobsService) { }
+  constructor(private jobsService:JobsService,private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
+  }
 
   async ngOnInit(): Promise<void> {
     this.JobID = history.state.data._id;
@@ -53,13 +58,31 @@ export class OffersComponent implements OnInit {
   offerClicked(result,bid){
     console.log(result);
     console.log(bid);
-
     var selectedBid = bid;
     
-    selectedBid.accepted = true;
-
-    console.log(selectedBid);
-
+    if(result){
+      selectedBid.accepted = true;
+      console.log(selectedBid);
+  
+      this.jobsService.acceptBid(selectedBid._id)
+      .pipe(first())
+      .subscribe({
+          next: data => {
+              // get return url from query parameters or default to home page
+              // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+             console.log(data)
+             this.router.navigate(['user-profile'])
+  
+          },
+          error: error => {
+            console.log(error)
+  
+            if(error == 'User Already Has a Bid'){
+              
+            }
+          }
+      });
+    }
   }
 
   checkIfBidAccpeted(bids){

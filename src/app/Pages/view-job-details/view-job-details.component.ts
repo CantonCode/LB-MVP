@@ -17,7 +17,8 @@ export class ViewJobDetailsComponent implements OnInit {
   loading:boolean
   routing:string;
   bidExists:boolean;
-  bidSuccess:boolean
+  bidSuccess:boolean;
+  jobAvailable:boolean;
 
   constructor(private accountService: AccountService,private jobsService:JobsService) { }
 
@@ -29,7 +30,9 @@ export class ViewJobDetailsComponent implements OnInit {
     this.getCreator(this.currentJob.creator);
     this.bidExists = false; 
     this.bidSuccess = false;
-    
+    this.jobAvailable =this.currentJob.jobAvailable;
+
+
   }
 
 
