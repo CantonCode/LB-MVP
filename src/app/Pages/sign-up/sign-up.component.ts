@@ -19,6 +19,7 @@ export class SignUpComponent implements OnInit {
   loading = false;
   submitted = false;
   duplicateEmail = true;
+  userType = "none";
 
   constructor(private formBuilder: FormBuilder,
               private accountService: AccountService,
@@ -45,6 +46,10 @@ export class SignUpComponent implements OnInit {
     
 
     
+}
+
+selectUser(type){
+  this.userType = type;
 }
 
 get f() { return this.form.controls; }
