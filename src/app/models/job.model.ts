@@ -8,6 +8,8 @@ export class Job {
     location:string;
     phoneNumber:number;
     creator:string;
+    bids:Array<any>;
+    jobAvailable:boolean;
 
   constructor(
     name: string, 
@@ -18,7 +20,9 @@ export class Job {
     cost: number, 
     location: string, 
     phoneNumber: number,
-    creator:string
+    creator:string,
+    bids:Array<any>,
+    jobAvailable:boolean
 ) {
     this.name = name
     this.description = description
@@ -29,6 +33,8 @@ export class Job {
     this.location = location
     this.phoneNumber = phoneNumber
     this.creator = creator
+    this.bids = bids
+    this.jobAvailable = jobAvailable
   }
 
     

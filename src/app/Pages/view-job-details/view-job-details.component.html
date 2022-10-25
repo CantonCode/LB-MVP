@@ -104,9 +104,23 @@
 
                 <hr width="90%" />
 
-                <div style="text-align: center;">
-                    <a class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;">Apply to Job</a>
+                <div style="text-align: center;" *ngIf='!jobAvailable'>
+                    <a  class="btn disabled" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;">Job Unavailable</a>
                 </div>
+
+                <div style="text-align: center;" *ngIf='!bidSuccess && !bidExists && jobAvailable'>
+                    <a (click)='applyToJob()' class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;">Apply to Job</a>
+                </div>
+
+                <div style="text-align: center;" *ngIf='bidSuccess && !bidExists'>
+                    <a  class="btn" style="margin: 0 auto; background-color:hsl(140, 79%, 29%);border: none; width: 80%;">Bid Successful!</a>
+                </div>
+
+                <div style="text-align: center;" *ngIf='bidExists'>
+                    <a  class="btn" style="margin: 0 auto; background-color:hsl(355, 75%, 46%);border: none; width: 80%;">You Already Applied!</a>
+                </div>
+
+                
                 
 
                 

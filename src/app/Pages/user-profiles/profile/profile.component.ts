@@ -59,6 +59,10 @@ export class ProfileComponent implements OnInit {
   showJobs(){
     this.yourJobs = !this.yourJobs;
     this. yourProfile = !this. yourProfile;
+
+
   }
+
+  
 
 }

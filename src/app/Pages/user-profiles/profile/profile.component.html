@@ -98,9 +98,14 @@
                               <h5 class="card-title" style="font-weight: bold; margin-bottom: 0.1rem;">{{job.name}}</h5>
                               <h6 class="card-text" style="font-weight:100;color: 4B4B4B;margin-bottom: 0.1rem;">{{job.cat}}</h6>
                               <p class="card-text" style="font-weight:lighter;color:darkgrey;margin-bottom: 0.5rem;">{{job.location}}</p>
-                                <div style="text-align: center;">
+                                <div style="text-align: center;" *ngIf="job.jobAvailable == true">
                                     <a [routerLink]="['/view-details']" [state]="{ data: job, previous: 'user-profile'}" class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;margin: 5px;">View Live Listing</a>
-                                    <a  class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%; margin: 5px;">View Offers</a>
+                                    <a [routerLink]="['/viewBids']" [state]="{ data: job, previous: 'user-profile'}"class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%; margin: 5px;">View Offers</a>
+                                </div>
+
+                                <div style="text-align: center;" *ngIf="job.jobAvailable == false">
+                                    <a [routerLink]="['/view-details']" [state]="{ data: job, previous: 'user-profile'}" class="btn" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;margin: 5px;">View Live Listing</a>
+                                    <a class="btn disabled" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%; margin: 5px;">Job Offer Accepted...</a>
                                 </div>
                                 
                             </div>
