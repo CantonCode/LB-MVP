@@ -31,7 +31,7 @@
                         <button (click)='selectUser("homeowner")' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                             <label style="margin:7px" *ngIf="!loading">
-                               Homeowner
+                               Property Owner
                             </label>
                         </button>
                     </div>
@@ -39,7 +39,7 @@
                         <button (click)='selectUser("worker")' [disabled]="loading"  type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                             
                             <label style="margin:7px" >
-                               Worker
+                               Business Account
                             </label>
                         </button>
                     </div>
@@ -53,9 +53,9 @@
                     <h4 style="color:white; margin-top: 0px;">Please Fill Out Homeowner Details:</h4>
                 </div>
             </div>
-            <div class="card-body" style="justify-content: center;display: flex;align-items: center;padding:4rem;padding-top: 1rem;;">
+            <div class="card-body" style="justify-content: center;display: flex;align-items: center;padding:4rem;padding-top: 1rem;" >
             
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" style="" >
+                <form [formGroup]="generalForm" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'basicDetails'">
                     <div class="form-row">
                         <div class="form-group col-12" >
                             <h3 style="margin-top: 0px;">Title</h3>
@@ -123,10 +123,10 @@
                         
     
                         <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
-                            <button (click)='onSubmit()' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                            <button (click)='selectForm("personalDetailsHome")' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                 <label style="margin:7px" *ngIf="!loading">
-                                   Register
+                                   Next
                                 </label>
                             </button>
                         </div>
@@ -140,12 +140,47 @@
                         </div>
                     </div>
                 </form>
+
+                <form [formGroup]="homeForm2" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'personalDetailsHome'">
+                    <div class="form-row">
+                        <div class="form-group col-12" >
+                            <h3 style="margin-top: 0px;">Phone Number</h3>
+                            <input type="number" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.phoneNumber.errors }" style="border-color:black ; border-radius: 5px;"/>
+                            <div *ngIf="submitted && f2.phoneNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f2.phoneNumber.errors.required">Password is required</div>
+                                <div *ngIf="f2.phoneNumber.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    
+                    
+                    
+                        <div class="form-group row">
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <button  [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    <label style="margin:7px" *ngIf="!loading">
+                                        Register
+                                    </label>
+                                </button>
+                            </div>
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <button [disabled]="loading" (click)='selectForm("basicDetails")' type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                    
+                                    <label style="margin:7px" >
+                                        Back
+                                    </label>
+                                </button>
+                            </div>
+                        </div>
+                </form>
             </div>
     
         </div>
 
 
-        <div class="homeowner" *ngIf="userType == 'worker'">
+        <div class="worker" *ngIf="userType == 'worker'">
             <div class="row" style=" background-color: black; height: 25vh;">
                 <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
                     <h4 style="color:white; margin-top: 0px;">Please Fill Out Worker Details:</h4>
@@ -153,7 +188,7 @@
             </div>
             <div class="card-body" style="justify-content: center;display: flex;align-items: center;padding:4rem;padding-top: 1rem;;">
             
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" style="" >
+                <form [formGroup]="generalForm" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'basicDetails'">
                     <div class="form-row">
                         <div class="form-group col-12" >
                             <h3 style="margin-top: 0px;">Title</h3>
@@ -221,10 +256,10 @@
                         
     
                         <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
-                            <button (click)='onSubmit()' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                            <button (click)='selectForm("personalDetailsHome")' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                 <label style="margin:7px" *ngIf="!loading">
-                                   Register
+                                   Next
                                 </label>
                             </button>
                         </div>
@@ -232,11 +267,54 @@
                             <button [disabled]="loading" (click)='selectUser("none")' type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                                 
                                 <label style="margin:7px" >
-                                   Cancel
+                                   Back
                                 </label>
                             </button>
                         </div>
                     </div>
+                </form>
+
+                <form [formGroup]="workerForm2" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'personalDetailsHome'">
+                    <div class="form-row">
+                        <div class="form-group col-12" >
+                            <h3 style="margin-top: 0px;">Business Name</h3>
+                            <input type="text" formControlName="businessName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.businessName.errors }" style="border-color:black ; border-radius: 5px;"/>
+                            <div *ngIf="submitted && f4.businessName.errors" class="invalid-feedback">
+                                <div *ngIf="f4.businessName.errors.required">Business Name is required</div>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-12" >
+                            <h3 style="margin-top: 0px;">Phone Number</h3>
+                            <input type="number" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.phoneNumber.errors }" style="border-color:black ; border-radius: 5px;"/>
+                            <div *ngIf="submitted && f4.phoneNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f4.phoneNumber.errors.required">Password is required</div>
+                                <div *ngIf="f4.phoneNumber.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    
+                    
+                    
+                        <div class="form-group row">
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <button  [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    <label style="margin:7px" *ngIf="!loading">
+                                        Register
+                                    </label>
+                                </button>
+                            </div>
+                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                <button [disabled]="loading" (click)='selectForm("basicDetails")' type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                    
+                                    <label style="margin:7px" >
+                                        Back
+                                    </label>
+                                </button>
+                            </div>
+                        </div>
                 </form>
             </div>
     

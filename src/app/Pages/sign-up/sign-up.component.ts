@@ -15,11 +15,15 @@ import { first } from 'rxjs/operators';
 })
 export class SignUpComponent implements OnInit {
 
-  form:FormGroup;
+  generalForm:FormGroup;
+  homeForm2:FormGroup;
+  workerForm2:FormGroup;
+  
   loading = false;
   submitted = false;
   duplicateEmail = true;
   userType = "none";
+  formSelection = "basicDetails";
 
   constructor(private formBuilder: FormBuilder,
               private accountService: AccountService,
@@ -28,7 +32,7 @@ export class SignUpComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
+    this.generalForm = this.formBuilder.group({
         title: ['', Validators.required],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
@@ -41,21 +45,46 @@ export class SignUpComponent implements OnInit {
 
     });
 
-    
+    this.homeForm2 = this.formBuilder.group({
+      phoneNumber: ['', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]],
+    });
 
-    
-
-    
+    this.workerForm2 = this.formBuilder.group({
+      phoneNumber: ['', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]],
+      businessName:['',Validators.required]
+    });
 }
+get f() { return this.generalForm.controls; }
+get f2() { return this.homeForm2.controls; }
+get f4() { return this.workerForm2.controls; }
 
 selectUser(type){
   this.userType = type;
 }
 
-get f() { return this.form.controls; }
+selectForm(type){
+  if(type == "personalDetailsHome"){
+    //check to see if form is valid before moving on
+    this.submitted = true;
+    if (this.generalForm.invalid) {
+      return;
+    }else{
+      this.generalForm.controls.email.setErrors({'duplicate': false});
+      this.formSelection= type;
+      this.loading = false;
+      this.submitted = false;
+    }
+  }else{
+    this.formSelection = type;
+    this.loading = false;
+    this.submitted = false;
+  }
+}
+
+
 
 onSubmit() {
-    console.log("SUBMITTING",this.form);
+    console.log("SUBMITTING",this.generalForm);
     this.submitted = true;
 
     this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
@@ -65,13 +94,13 @@ onSubmit() {
     // this.alertService.clear();
 
     // stop here if form is invalid
-    if (this.form.invalid) {
+    if (this.generalForm.invalid) {
         return;
     }
 
     this.loading = true;
-    this.form.controls.email.setErrors({'duplicate': false});
-    this.accountService.register(this.form.value)
+    this.generalForm.controls.email.setErrors({'duplicate': false});
+    this.accountService.register(this.generalForm.value)
         .pipe(first())
         .subscribe({
             next: () => {
@@ -82,7 +111,7 @@ onSubmit() {
             error: error => {
                 if(error == "User Already Registered"){
                   this.duplicateEmail = true;
-                  this.form.controls.email.setErrors({'duplicate': true});
+                  this.generalForm.controls.email.setErrors({'duplicate': true});
                 }
                 console.log("ERROR",error)
                 this.loading = false;
