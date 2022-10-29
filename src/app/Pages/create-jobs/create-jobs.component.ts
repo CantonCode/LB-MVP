@@ -206,7 +206,7 @@ submitJob(){
   this.loading=true;
 
   this.finalJob = new Job(this.jobName,this.jobDescription,[this.jobCat1,this.jobCat2],'https://media.istockphoto.com/photos/beautiful-residential-home-exterior-on-bright-sunny-day-with-green-picture-id1211174464?k=20&m=1211174464&s=612x612&w=0&h=fQ3ahmaJnYcZb0UQtBXvOhcuhHFTgK9BA5Mylic7Gnw=',
-  this.jobTime,300,this.jobLocationFull,Number(this.jobNumber),jobCreator,[]);
+  this.jobTime,300,this.jobLocationFull,Number(this.jobNumber),jobCreator,[],true);
 
   console.log(this.finalJob);
   

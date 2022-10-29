@@ -18,12 +18,21 @@ export class SignUpComponent implements OnInit {
   generalForm:FormGroup;
   homeForm2:FormGroup;
   workerForm2:FormGroup;
-  
+  selectedCounty:any;
+  selectedCountyTowns:Array<string>;
+  selectedTown:string;
   loading = false;
   submitted = false;
   duplicateEmail = true;
   userType = "none";
   formSelection = "basicDetails";
+
+  counties = ["Sligo","Leitrim","Mayo","Roscommon"]
+  address = [{county:"Sligo",
+           towns:["Achonry","Aclare","Ballaghnatrillick","Ballinafad","Ballincar","Ballintogher","Ballygawley","Ballymote","Ballynacarrow","Ballysadare","Bellaghy","Beltra","Bunnanadden","Carney","Castlebaldwin","Charlestown-Bellahy","Cliffoney","Cloonacool","Collooney","Coolaney","Dromore West","Drumcliff","Easky","Enniscrone","Geevagh","Gorteen","Grange","Kilglass","Knocknahur","Monasteraden","Mullaghmore, County Sligo","Owenbeg","Rathcormack","Riverstown","Rosses Point","Skreen","Sligo","Sooey","Strandhill","Toorlestraun","Tubbercurry"]
+          },
+        {county:"Roscommon",
+      towns:["Roscommon","Arigna","Athleague","Ballaghaderreen","Ballinameen","Ballinlough","Ballintober","Ballyfarnon","Ballyforan","Bellanagare","Bellanamullia","Boyle","Brideswell","Castleplunket","Castlerea","Cloonbonniffe","Cloonfad","Cloontuskert","Cootehall","Cornafulla","Croghan","Curraghboy","Dysart","Elphin","Four Roads","Frenchpark","Fuerty","Keadue","Kilteevan","Knockcroghery","Knockvicar","Lecarrow","Lisacul","Loughglinn","Monksland","Old Town","Rahara","Roosky","Roscommon","Strokestown","Taghmaconnell","Tarmonbarry"]}]
 
   constructor(private formBuilder: FormBuilder,
               private accountService: AccountService,
@@ -47,6 +56,9 @@ export class SignUpComponent implements OnInit {
 
     this.homeForm2 = this.formBuilder.group({
       phoneNumber: ['', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]],
+      county:['',Validators.required],
+      town:['',Validators.required],
+      eircode: ['', [Validators.required,Validators.minLength(7), Validators.maxLength(7)]]
     });
 
     this.workerForm2 = this.formBuilder.group({
@@ -117,6 +129,22 @@ onSubmit() {
                 this.loading = false;
             }
         });
+}
+
+countySelected(){
+  console.log(this.selectedCounty)
+  this.selectedCountyTowns = this.selectedCounty.towns
+}
+
+registerAsHome(){
+  this.submitted = true;
+
+  console.log(this.generalForm.value);
+  console.log(this.homeForm2.value);
+
+  if (this.generalForm.invalid || this.homeForm2.invalid) {
+    return;
+  }
 }
 
  
