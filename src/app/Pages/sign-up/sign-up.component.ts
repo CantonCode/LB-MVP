@@ -21,13 +21,14 @@ export class SignUpComponent implements OnInit {
   selectedCounty:any;
   selectedCountyTowns:Array<string>;
   selectedTown:string;
+  selectedServices:any;
   loading = false;
   submitted = false;
   duplicateEmail = true;
   userType = "none";
   formSelection = "basicDetails";
 
-  counties = ["Sligo","Leitrim","Mayo","Roscommon"]
+  services = ["plumbing","building","Painting"]
   address = [{county:"Sligo",
            towns:["Achonry","Aclare","Ballaghnatrillick","Ballinafad","Ballincar","Ballintogher","Ballygawley","Ballymote","Ballynacarrow","Ballysadare","Bellaghy","Beltra","Bunnanadden","Carney","Castlebaldwin","Charlestown-Bellahy","Cliffoney","Cloonacool","Collooney","Coolaney","Dromore West","Drumcliff","Easky","Enniscrone","Geevagh","Gorteen","Grange","Kilglass","Knocknahur","Monasteraden","Mullaghmore, County Sligo","Owenbeg","Rathcormack","Riverstown","Rosses Point","Skreen","Sligo","Sooey","Strandhill","Toorlestraun","Tubbercurry"]
           },
@@ -63,7 +64,11 @@ export class SignUpComponent implements OnInit {
 
     this.workerForm2 = this.formBuilder.group({
       phoneNumber: ['', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]],
-      businessName:['',Validators.required]
+      businessName:['',Validators.required],
+      services:['',Validators.required],
+      county:['',Validators.required],
+      town:['',Validators.required],
+      eircode: ['', [Validators.required,Validators.minLength(7), Validators.maxLength(7)]]
     });
 }
 get f() { return this.generalForm.controls; }
@@ -134,6 +139,10 @@ onSubmit() {
 countySelected(){
   console.log(this.selectedCounty)
   this.selectedCountyTowns = this.selectedCounty.towns
+}
+
+serviceSelected(){
+  
 }
 
 registerAsHome(){
