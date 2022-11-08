@@ -287,7 +287,7 @@
                         
     
                         <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
-                            <button (click)='selectForm("personalDetailsHome")' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                            <button (click)='selectForm("personalDetailsWorker")' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                 <label style="margin:7px" *ngIf="!loading">
                                    Next
@@ -305,7 +305,7 @@
                     </div>
                 </form>
 
-                <form [formGroup]="workerForm2" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'personalDetailsHome'">
+                <form [formGroup]="workerForm2" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'personalDetailsWorker'">
                     <div class="form-row">
                         <div class="form-group col-12" >
                             <h3 style="margin-top: 0px;">Business Name</h3>
@@ -329,7 +329,7 @@
 
                         <div class="form-group col-12" >
                             <h3 style="margin-top: 0px;">Your Services</h3>
-                            <select  (change)="serviceSelected()" [(ngModel)]="selectedServices" formControlName="services" data-live-search="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.services.errors }" style="border-color:black ; border-radius: 5px;">
+                            <select  multiple (change)="serviceSelected()" [(ngModel)]="selectedServices" formControlName="services" data-live-search="true" class="form-control form-select" [ngClass]="{ 'is-invalid': submitted && f4.services.errors }" style="border-color:black ; border-radius: 5px;">
                                 <option *ngFor="let s of services" [ngValue]="s">{{s}}</option>
                             </select>
                             <div *ngIf="submitted && f4.services.errors" class="invalid-feedback">
@@ -372,7 +372,7 @@
                     
                         <div class="form-group row">
                             <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
-                                <button  [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                <button (click)="registerAsBusiness()" [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                                     <label style="margin:7px" *ngIf="!loading">
                                         Register

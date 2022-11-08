@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -16,19 +17,21 @@ import { first } from 'rxjs/operators';
 export class SignUpComponent implements OnInit {
 
   generalForm:FormGroup;
+  generalFormValid:boolean;
   homeForm2:FormGroup;
   workerForm2:FormGroup;
   selectedCounty:any;
   selectedCountyTowns:Array<string>;
   selectedTown:string;
   selectedServices:any;
+
   loading = false;
   submitted = false;
   duplicateEmail = true;
   userType = "none";
   formSelection = "basicDetails";
 
-  services = ["plumbing","building","Painting"]
+  services = ["plumbing","building","Painting","HELPIng","test2","test23"]
   address = [{county:"Sligo",
            towns:["Achonry","Aclare","Ballaghnatrillick","Ballinafad","Ballincar","Ballintogher","Ballygawley","Ballymote","Ballynacarrow","Ballysadare","Bellaghy","Beltra","Bunnanadden","Carney","Castlebaldwin","Charlestown-Bellahy","Cliffoney","Cloonacool","Collooney","Coolaney","Dromore West","Drumcliff","Easky","Enniscrone","Geevagh","Gorteen","Grange","Kilglass","Knocknahur","Monasteraden","Mullaghmore, County Sligo","Owenbeg","Rathcormack","Riverstown","Rosses Point","Skreen","Sligo","Sooey","Strandhill","Toorlestraun","Tubbercurry"]
           },
@@ -80,6 +83,7 @@ selectUser(type){
 }
 
 selectForm(type){
+  this.generalFormValid = false;
   if(type == "personalDetailsHome"){
     //check to see if form is valid before moving on
     this.submitted = true;
@@ -90,55 +94,79 @@ selectForm(type){
       this.formSelection= type;
       this.loading = false;
       this.submitted = false;
+      this.generalFormValid = true;
     }
-  }else{
-    this.formSelection = type;
-    this.loading = false;
-    this.submitted = false;
   }
+
+  if(type == "personalDetailsWorker"){
+    //check to see if form is valid before moving on
+    this.submitted = true;
+    if (this.generalForm.invalid) {
+      return;
+    }else{
+      this.generalForm.controls.email.setErrors({'duplicate': false});
+      this.formSelection= type;
+      this.loading = false;
+      this.submitted = false;
+      this.generalFormValid = true;
+    }
+  }
+  // }else{
+  //   this.formSelection = type;
+  //   this.loading = false;
+  //   this.submitted = false;
+  // }
 }
 
 
 
-onSubmit() {
-    console.log("SUBMITTING",this.generalForm);
-    this.submitted = true;
-
-    this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
-    
-
-    // reset alerts on submit
-    // this.alertService.clear();
-
-    // stop here if form is invalid
-    if (this.generalForm.invalid) {
-        return;
+onSubmit(signupDetails) {
+    if(!this.generalFormValid){
+      return;
     }
 
+    console.log("SUBMITTING",signupDetails);
     this.loading = true;
-    this.generalForm.controls.email.setErrors({'duplicate': false});
-    this.accountService.register(this.generalForm.value)
-        .pipe(first())
-        .subscribe({
-            next: () => {
-                this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
-                console.log("USER REGISTERED")
-                this.router.navigate(['../login'], { relativeTo: this.route });
-            },
-            error: error => {
-                if(error == "User Already Registered"){
-                  this.duplicateEmail = true;
-                  this.generalForm.controls.email.setErrors({'duplicate': true});
-                }
-                console.log("ERROR",error)
-                this.loading = false;
-            }
-        });
+
+    // console.log("SUBMITTING",this.generalForm);
+    // this.submitted = true;
+
+    // this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+    
+
+    // // reset alerts on submit
+    // // this.alertService.clear();
+
+    // // stop here if form is invalid
+    // if (this.generalForm.invalid) {
+    //     return;
+    // }
+
+    // this.loading = true;
+    // this.generalForm.controls.email.setErrors({'duplicate': false});
+    // this.accountService.register(this.generalForm.value)
+    //     .pipe(first())
+    //     .subscribe({
+    //         next: () => {
+    //             this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+    //             console.log("USER REGISTERED")
+    //             this.router.navigate(['../login'], { relativeTo: this.route });
+    //         },
+    //         error: error => {
+    //             if(error == "User Already Registered"){
+    //               this.duplicateEmail = true;
+    //               this.generalForm.controls.email.setErrors({'duplicate': true});
+    //             }
+    //             console.log("ERROR",error)
+    //             this.loading = false;
+    //         }
+    //     });
 }
 
 countySelected(){
   console.log(this.selectedCounty)
   this.selectedCountyTowns = this.selectedCounty.towns
+  
 }
 
 serviceSelected(){
@@ -148,12 +176,42 @@ serviceSelected(){
 registerAsHome(){
   this.submitted = true;
 
-  console.log(this.generalForm.value);
-  console.log(this.homeForm2.value);
+  this.homeForm2.value.county = this.selectedCounty.county
 
-  if (this.generalForm.invalid || this.homeForm2.invalid) {
+  if (this.homeForm2.invalid) {
+    console.log("INVALID")
+    console.log(this.homeForm2.invalid)
     return;
+  }else{
+    let signupDetails = {
+      ...this.generalForm.value,
+      ...this.homeForm2.value,
+    }
+
+    this.onSubmit(signupDetails)
   }
+}
+
+registerAsBusiness(){
+  this.submitted = true;
+
+  this.workerForm2.value.county = this.selectedCounty.county
+
+  if (this.workerForm2.invalid) {
+    console.log("INVALID")
+    console.log(this.workerForm2.invalid)
+    return;
+  }else{
+    let signupDetails = {
+      ...this.generalForm.value,
+      ...this.workerForm2.value,
+    }
+
+    this.onSubmit(signupDetails);
+  }
+
+
+
 }
 
  
