@@ -142,69 +142,83 @@
                 </form>
 
                 <form [formGroup]="homeForm2" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'personalDetailsHome'">
-                    <div class="form-row">
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Phone Number</h3>
-                            <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.phoneNumber.errors }" style="border-color:black ; border-radius: 5px;" placeholder="e.g. 0851790666" maxlength="10"/>
-                            <div *ngIf="submitted && f2.phoneNumber.errors" class="invalid-feedback">
-                                <div *ngIf="f2.phoneNumber.errors.required">Number is required</div>
-                                <div *ngIf="f2.phoneNumber.errors.pattern">Digits Only</div>
-                                <div *ngIf="f2.phoneNumber.errors.minlength">Number must has 10 digits</div>
-                                <div *ngIf="f2.phoneNumber.errors.maxlength">Number must has 10 digits</div>
+                    <div *ngIf="!usercreated">
+                        <div class="form-row">
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Phone Number</h3>
+                                <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.phoneNumber.errors }" style="border-color:black ; border-radius: 5px;" placeholder="e.g. 0851790666" maxlength="10"/>
+                                <div *ngIf="submitted && f2.phoneNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.phoneNumber.errors.required">Number is required</div>
+                                    <div *ngIf="f2.phoneNumber.errors.pattern">Digits Only</div>
+                                    <div *ngIf="f2.phoneNumber.errors.minlength">Number must has 10 digits</div>
+                                    <div *ngIf="f2.phoneNumber.errors.maxlength">Number must has 10 digits</div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">County</h3>
-                            <select  (change)="countySelected()" [(ngModel)]="selectedCounty" formControlName="county" data-live-search="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.county.errors }" style="border-color:black ; border-radius: 5px;">
-                                <option *ngFor="let a of address" [ngValue]="a">{{a.county}}</option>
-                            </select>
-                            <div *ngIf="submitted && f2.county.errors" class="invalid-feedback">
-                                <div *ngIf="f2.county.errors.required">County is required</div>
+    
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">County</h3>
+                                <select  (change)="countySelected()" [(ngModel)]="selectedCounty" formControlName="county" data-live-search="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.county.errors }" style="border-color:black ; border-radius: 5px;">
+                                    <option *ngFor="let a of address" [ngValue]="a">{{a.county}}</option>
+                                </select>
+                                <div *ngIf="submitted && f2.county.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.county.errors.required">County is required</div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Town</h3>
-                            <select  [(ngModel)]="selectedTown" formControlName="town" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.town.errors }" style="border-color:black ; border-radius: 5px;">
-                                <option *ngFor="let t of selectedCountyTowns" [ngValue]="t">{{t}}</option>
-                            </select>
-                            <div *ngIf="submitted && f2.town.errors" class="invalid-feedback">
-                                <div *ngIf="f2.town.errors.required">Town is required</div>
+    
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Town</h3>
+                                <select  [(ngModel)]="selectedTown" formControlName="town" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.town.errors }" style="border-color:black ; border-radius: 5px;">
+                                    <option *ngFor="let t of selectedCountyTowns" [ngValue]="t">{{t}}</option>
+                                </select>
+                                <div *ngIf="submitted && f2.town.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.town.errors.required">Town is required</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Eircode</h3>
-                            <input maxlength=7 type="text" formControlName="eircode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.eircode.errors }" style="border-color:black ; border-radius: 5px;"/>
-                            <div *ngIf="submitted && f2.eircode.errors" class="invalid-feedback">
-                                <div *ngIf="f2.eircode.errors.required">Eircode is required</div>
-                                <div *ngIf="f2.eircode.errors.minlength">Eircode must be 7 characters</div>
-                                <div *ngIf="f2.eircode.errors.maxlength">Eircode must be 7 characters</div>
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Eircode</h3>
+                                <input maxlength=7 type="text" formControlName="eircode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f2.eircode.errors }" style="border-color:black ; border-radius: 5px;"/>
+                                <div *ngIf="submitted && f2.eircode.errors" class="invalid-feedback">
+                                    <div *ngIf="f2.eircode.errors.required">Eircode is required</div>
+                                    <div *ngIf="f2.eircode.errors.minlength">Eircode must be 7 characters</div>
+                                    <div *ngIf="f2.eircode.errors.maxlength">Eircode must be 7 characters</div>
+                                </div>
+                            </div>
+                        
+                            
+                            <div class="form-group row">
+                                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                    <button  (click)="registerAsHome()" [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                        <label style="margin:7px" *ngIf="!loading">
+                                            Register
+                                        </label>
+                                    </button>
+                                </div>
+                                <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
+                                    <button [disabled]="loading" (click)='selectForm("basicDetails")' type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
+                                        
+                                        <label style="margin:7px" >
+                                            Back
+                                        </label>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                        
                     
-                    
-                    
-                        <div class="form-group row">
-                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
-                                <button  (click)="registerAsHome()" [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
-                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                                    <label style="margin:7px" *ngIf="!loading">
-                                        Register
-                                    </label>
-                                </button>
+
+                    <div class="job-confirm-details" *ngIf="usercreated">
+                        <div class="row">
+                            <div class="col-12 " style="text-align:center;">
+                                <img src="https://images.freeimages.com/images/large-previews/99f/green-tick-in-circle-1147519.jpg" alt="Flowers in Chania" width="200vw">
                             </div>
-                            <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
-                                <button [disabled]="loading" (click)='selectForm("basicDetails")' type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
-                                    
-                                    <label style="margin:7px" >
-                                        Back
-                                    </label>
-                                </button>
-                            </div>
+            
+                            <div class="col-12 " style="text-align:center;">
+                                
+                                <h3>Registration Successful</h3>
+                            </div>   
                         </div>
+                    </div>
                 </form>
             </div>
     
@@ -284,8 +298,7 @@
                     </div> -->
                     
                     <div class="form-group row">
-                        
-    
+
                         <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
                             <button (click)='selectForm("personalDetailsWorker")' [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
                                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
@@ -306,70 +319,68 @@
                 </form>
 
                 <form [formGroup]="workerForm2" (ngSubmit)="onSubmit()" style="" *ngIf="formSelection == 'personalDetailsWorker'">
-                    <div class="form-row">
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Business Name</h3>
-                            <input type="text" formControlName="businessName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.businessName.errors }" style="border-color:black ; border-radius: 5px;"/>
-                            <div *ngIf="submitted && f4.businessName.errors" class="invalid-feedback">
-                                <div *ngIf="f4.businessName.errors.required">Business Name is required</div>
+                    <div *ngIf="!usercreated">
+                        <div class="form-row">
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Business Name</h3>
+                                <input type="text" formControlName="businessName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.businessName.errors }" style="border-color:black ; border-radius: 5px;"/>
+                                <div *ngIf="submitted && f4.businessName.errors" class="invalid-feedback">
+                                    <div *ngIf="f4.businessName.errors.required">Business Name is required</div>
 
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Phone Number</h3>
-                            <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.phoneNumber.errors }" style="border-color:black ; border-radius: 5px;" placeholder="e.g. 0851790666" maxlength="10"/>
-                            <div *ngIf="submitted && f4.phoneNumber.errors" class="invalid-feedback">
-                                <div *ngIf="f4.phoneNumber.errors.required">Number is required</div>
-                                <div *ngIf="f4.phoneNumber.errors.pattern">Digits Only</div>
-                                <div *ngIf="f4.phoneNumber.errors.minlength">Number must has 10 digits</div>
-                                <div *ngIf="f4.phoneNumber.errors.maxlength">Number must has 10 digits</div>
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Phone Number</h3>
+                                <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.phoneNumber.errors }" style="border-color:black ; border-radius: 5px;" placeholder="e.g. 0851790666" maxlength="10"/>
+                                <div *ngIf="submitted && f4.phoneNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f4.phoneNumber.errors.required">Number is required</div>
+                                    <div *ngIf="f4.phoneNumber.errors.pattern">Digits Only</div>
+                                    <div *ngIf="f4.phoneNumber.errors.minlength">Number must has 10 digits</div>
+                                    <div *ngIf="f4.phoneNumber.errors.maxlength">Number must has 10 digits</div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Your Services</h3>
-                            <select  multiple (change)="serviceSelected()" [(ngModel)]="selectedServices" formControlName="services" data-live-search="true" class="form-control form-select" [ngClass]="{ 'is-invalid': submitted && f4.services.errors }" style="border-color:black ; border-radius: 5px;">
-                                <option *ngFor="let s of services" [ngValue]="s">{{s}}</option>
-                            </select>
-                            <div *ngIf="submitted && f4.services.errors" class="invalid-feedback">
-                                <div *ngIf="f4.services.errors.required">County is required</div>
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Your Services</h3>
+                                <select  multiple (change)="serviceSelected()" [(ngModel)]="selectedServices" formControlName="services" data-live-search="true" class="form-control form-select" [ngClass]="{ 'is-invalid': submitted && f4.services.errors }" style="border-color:black ; border-radius: 5px;">
+                                    <option *ngFor="let s of services" [ngValue]="s">{{s}}</option>
+                                </select>
+                                <div *ngIf="submitted && f4.services.errors" class="invalid-feedback">
+                                    <div *ngIf="f4.services.errors.required">County is required</div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">County</h3>
-                            <select  (change)="countySelected()" [(ngModel)]="selectedCounty" formControlName="county" data-live-search="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.county.errors }" style="border-color:black ; border-radius: 5px;">
-                                <option *ngFor="let a of address" [ngValue]="a">{{a.county}}</option>
-                            </select>
-                            <div *ngIf="submitted && f4.county.errors" class="invalid-feedback">
-                                <div *ngIf="f4.county.errors.required">County is required</div>
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">County</h3>
+                                <select  (change)="countySelected()" [(ngModel)]="selectedCounty" formControlName="county" data-live-search="true" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.county.errors }" style="border-color:black ; border-radius: 5px;">
+                                    <option *ngFor="let a of address" [ngValue]="a">{{a.county}}</option>
+                                </select>
+                                <div *ngIf="submitted && f4.county.errors" class="invalid-feedback">
+                                    <div *ngIf="f4.county.errors.required">County is required</div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Town</h3>
-                            <select  [(ngModel)]="selectedTown" formControlName="town" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.town.errors }" style="border-color:black ; border-radius: 5px;">
-                                <option *ngFor="let t of selectedCountyTowns" [ngValue]="t">{{t}}</option>
-                            </select>
-                            <div *ngIf="submitted && f4.town.errors" class="invalid-feedback">
-                                <div *ngIf="f4.town.errors.required">Town is required</div>
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Town</h3>
+                                <select  [(ngModel)]="selectedTown" formControlName="town" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.town.errors }" style="border-color:black ; border-radius: 5px;">
+                                    <option *ngFor="let t of selectedCountyTowns" [ngValue]="t">{{t}}</option>
+                                </select>
+                                <div *ngIf="submitted && f4.town.errors" class="invalid-feedback">
+                                    <div *ngIf="f4.town.errors.required">Town is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-12" >
+                                <h3 style="margin-top: 0px;">Eircode</h3>
+                                <input maxlength=7 type="text" formControlName="eircode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.eircode.errors }" style="border-color:black ; border-radius: 5px;"/>
+                                <div *ngIf="submitted && f4.eircode.errors" class="invalid-feedback">
+                                    <div *ngIf="f4.eircode.errors.required">Eircode is required</div>
+                                    <div *ngIf="f4.eircode.errors.minlength">Eircode must be 7 characters</div>
+                                    <div *ngIf="f4.eircode.errors.maxlength">Eircode must be 7 characters</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group col-12" >
-                            <h3 style="margin-top: 0px;">Eircode</h3>
-                            <input maxlength=7 type="text" formControlName="eircode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f4.eircode.errors }" style="border-color:black ; border-radius: 5px;"/>
-                            <div *ngIf="submitted && f4.eircode.errors" class="invalid-feedback">
-                                <div *ngIf="f4.eircode.errors.required">Eircode is required</div>
-                                <div *ngIf="f4.eircode.errors.minlength">Eircode must be 7 characters</div>
-                                <div *ngIf="f4.eircode.errors.maxlength">Eircode must be 7 characters</div>
-                            </div>
-                        </div>
-                    </div>
-                        
-                    
-                    
-                    
+                            
                         <div class="form-group row">
                             <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
                                 <button (click)="registerAsBusiness()" [disabled]="loading" type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
@@ -378,6 +389,8 @@
                                         Register
                                     </label>
                                 </button>
+
+                                
                             </div>
                             <div class="col-12" style="justify-content: center;display: flex;text-align: center;">
                                 <button [disabled]="loading" (click)='selectForm("basicDetails")' type="button"  class="btn btn-secondary cat-button" style="width:50vw;justify-content: center;display: flex;text-align: center;margin:0px 0px 10px 0px;  color: black; background-color: white; border-radius: 5px;">
@@ -388,7 +401,24 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="job-confirm-details" *ngIf="usercreated">
+                        <div class="row">
+                            <div class="col-12 " style="text-align:center;">
+                                <img src="https://images.freeimages.com/images/large-previews/99f/green-tick-in-circle-1147519.jpg" alt="Flowers in Chania" width="200vw">
+                            </div>
+            
+                            <div class="col-12 " style="text-align:center;">
+                                
+                                <h3>Registration Successful</h3>
+                            </div>   
+                        </div>
+                    </div>
+
                 </form>
+
+                
             </div>
     
         </div>

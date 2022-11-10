@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from 'app/_helpers/must-match.validator';
 import { AccountService } from 'app/_services/account.service';
 import { AlertService } from 'app/_services/alert.service';
+import { sign } from 'crypto';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -30,6 +31,7 @@ export class SignUpComponent implements OnInit {
   duplicateEmail = true;
   userType = "none";
   formSelection = "basicDetails";
+  usercreated = false;
 
   services = ["plumbing","building","Painting","HELPIng","test2","test23"]
   address = [{county:"Sligo",
@@ -144,23 +146,29 @@ onSubmit(signupDetails) {
 
     // this.loading = true;
     // this.generalForm.controls.email.setErrors({'duplicate': false});
-    // this.accountService.register(this.generalForm.value)
-    //     .pipe(first())
-    //     .subscribe({
-    //         next: () => {
-    //             this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
-    //             console.log("USER REGISTERED")
-    //             this.router.navigate(['../login'], { relativeTo: this.route });
-    //         },
-    //         error: error => {
-    //             if(error == "User Already Registered"){
-    //               this.duplicateEmail = true;
-    //               this.generalForm.controls.email.setErrors({'duplicate': true});
-    //             }
-    //             console.log("ERROR",error)
-    //             this.loading = false;
-    //         }
-    //     });
+    this.accountService.register(signupDetails)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+                console.log("USER REGISTERED");
+                this.usercreated = true;
+                setTimeout(() => {
+                  this.router.navigate(['../login'], { relativeTo: this.route });
+              }, 2000);
+                
+                
+            },
+            error: error => {
+                if(error == "User Already Registered"){
+                  this.duplicateEmail = true;
+                  
+                  this.generalForm.controls.email.setErrors({'duplicate': true});
+                }
+                console.log("ERROR",error)
+                this.loading = false;
+            }
+        });
 }
 
 countySelected(){
@@ -185,7 +193,9 @@ registerAsHome(){
   }else{
     let signupDetails = {
       ...this.generalForm.value,
-      ...this.homeForm2.value,
+      phoneNumber:this.homeForm2.value.phoneNumber,
+      address:this.homeForm2.value.town + "," + this.homeForm2.value.county + "," + this.homeForm2.value.eircode,
+      role:'Homeowner'
     }
 
     this.onSubmit(signupDetails)
@@ -204,14 +214,20 @@ registerAsBusiness(){
   }else{
     let signupDetails = {
       ...this.generalForm.value,
-      ...this.workerForm2.value,
+      businessName:this.workerForm2.value.businessName,
+      phoneNumber:this.workerForm2.value.phoneNumber,
+      address:this.workerForm2.value.town + "," + this.workerForm2.value.county + "," + this.workerForm2.value.eircode,
+      services:this.workerForm2.value.services,
+      role:'Worker'
     }
 
+    
     this.onSubmit(signupDetails);
   }
+}
 
-
-
+redirectToLogin(){
+  
 }
 
  
