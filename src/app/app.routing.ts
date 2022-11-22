@@ -14,6 +14,7 @@ import { SignUpComponent } from './Pages/sign-up/sign-up.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { AuthGuard } from './_helpers/auth.gaurd';
 import { OffersComponent } from './Pages/user-profiles/view-offers/offers/offers.component';
+import { FindworkerComponent } from './Pages/find-worker/findworker/findworker.component';
 
 
 const routes: Routes =[
@@ -30,6 +31,7 @@ const routes: Routes =[
     { path: 'signup',           component: Signup1Component },
     { path: 'sign-up',           component: SignUpComponent },
     { path: 'login',           component: LoginComponent },
+    { path: 'find-worker',           component: FindworkerComponent },
     { path: 'view-jobs',
       component: ViewJobsComponent,
       children:[

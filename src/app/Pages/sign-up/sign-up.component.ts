@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MustMatch } from 'app/_helpers/must-match.validator';
 import { AccountService } from 'app/_services/account.service';
 import { AlertService } from 'app/_services/alert.service';
-import { sign } from 'crypto';
+
 import { first } from 'rxjs/operators';
 
 @Component({

@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { OffersComponent } from './user-profiles/view-offers/offers/offers.component';
+import { FindworkerComponent } from './find-worker/findworker/findworker.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import { OffersComponent } from './user-profiles/view-offers/offers/offers.compo
         HomeComponent,
         SignUpComponent,
         LoginComponent,
-        OffersComponent
+        OffersComponent,
+        FindworkerComponent
     ]
 })
 export class PagesModule { }
