@@ -1,1 +1,81 @@
-<p>findworker works!</p>
+<div>
+    <div class="content" style="align-items: center;justify-content: center;display: flex;">
+        <div class="container">
+
+            <div class="nav-header">
+                <div class="row" style="padding:20px">
+                    
+                    <div class="col-6 my-auto">
+                        <div class="filter-bar" >
+                            <button class="btn" style="color:black; background-color:white;border-radius: 50px;" routerLink="/home">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-6">   
+                </div>  
+            </div>
+            
+            <div class="row" style="padding:20px">
+                <div class="col-6 my-auto">
+                    <div class="filter-bar" style="">
+                        <h5>Results: {{workersSize}} </h5>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="text-align: right;">
+                        <a href="#" class="btn" style="margin: 0 auto; background-color:white; color:black; width: 60%;padding:1px;border-radius: 25px;">filter</a>
+                    </div>
+                </div>
+                <hr width="90%" />
+            </div>
+
+            <div class="spinner" style="justify-content: center;display: flex;text-align: center;">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
+            </div>
+            
+            <div *ngIf="!loading" class="row">
+                <div class="col-12" style="align-items: center;justify-content: center;display: flex;">
+                    <div class="job-card-view" style="margin-top: 20px;">
+                        <li *ngFor="let worker of AllWorkers" style="list-style-type: none;">
+                            <div class="card" style="width: 20rem; ">
+                                <!-- <img class="card-img-top" src={{job.photo}} alt="Card image cap"> -->
+                                <div class="card-body">
+                                    <h4 class="card-title" style="font-weight: bold; margin-bottom: 0.1rem;">{{worker.firstName}} {{worker.lastName}}</h4>
+                                    <h5 style="padding:0.25rem;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:0.75rem" width="23" height="23" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                            <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0Zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708ZM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11Z"/>
+                                        </svg>
+
+                                        <span *ngFor="let service of worker.services">
+                                            <span class="badge badge-pill badge-light">{{service}}</span>
+                                        </span>
+                                    </h5>
+                                  
+                                  
+                                  
+                                    <h6 class="card-text" style="padding:0.25rem;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" style="margin-right:0.75rem" width="23" height="23" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+                                            <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+                                        </svg>
+                                        {{worker.address}}
+                                    </h6>
+                                    <div style="text-align: center;">
+                                        <a class="btn" (click)="routeToPublicProfile(worker.id)" style="margin: 0 auto; background-color:#4F84DE;border: none; width: 80%;">View Profile</a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                  </div>
+            </div>
+            
+              
+              
+              
+        </div>
+    </div>
+       
+</div>

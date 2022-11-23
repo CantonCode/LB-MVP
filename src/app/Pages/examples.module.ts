@@ -14,6 +14,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { OffersComponent } from './user-profiles/view-offers/offers/offers.component';
 import { FindworkerComponent } from './find-worker/findworker/findworker.component';
+import { PublicProfileComponent } from './user-profiles/public-profile-view/public-profile/public-profile.component';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { FindworkerComponent } from './find-worker/findworker/findworker.compone
         SignUpComponent,
         LoginComponent,
         OffersComponent,
-        FindworkerComponent
+        FindworkerComponent,
+        PublicProfileComponent
     ]
 })
 export class PagesModule { }

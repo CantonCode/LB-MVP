@@ -15,6 +15,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { AuthGuard } from './_helpers/auth.gaurd';
 import { OffersComponent } from './Pages/user-profiles/view-offers/offers/offers.component';
 import { FindworkerComponent } from './Pages/find-worker/findworker/findworker.component';
+import { PublicProfileComponent } from './Pages/user-profiles/public-profile-view/public-profile/public-profile.component';
 
 
 const routes: Routes =[
@@ -24,14 +25,17 @@ const routes: Routes =[
       {
         path: 'viewBids',
         component: OffersComponent
-     }
+     },
+
     ]
 
     },
     { path: 'signup',           component: Signup1Component },
     { path: 'sign-up',           component: SignUpComponent },
     { path: 'login',           component: LoginComponent },
-    { path: 'find-worker',           component: FindworkerComponent },
+    { path: 'find-worker',           component: FindworkerComponent, canActivate: [AuthGuard]},
+    { path: 'public-profile/:id',           component: PublicProfileComponent, canActivate: [AuthGuard]},
+    
     { path: 'view-jobs',
       component: ViewJobsComponent,
       children:[
